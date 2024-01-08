@@ -7,9 +7,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F43BD650-F5A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{32C90AB2-7BBB-4DD7-95AA-3CED8A129BA4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Core", "ProjectManagementSystem.Core\ProjectManagementSystem.Core.csproj", "{8F42AE10-1BAB-4470-83A1-270EF314EED2}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F42AE10-1BAB-4470-83A1-270EF314EED2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F42AE10-1BAB-4470-83A1-270EF314EED2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F42AE10-1BAB-4470-83A1-270EF314EED2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F42AE10-1BAB-4470-83A1-270EF314EED2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8F42AE10-1BAB-4470-83A1-270EF314EED2} = {F43BD650-F5A4-4FEA-9601-E43BC6573E17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48321867-67DE-4215-8D73-20A059B65280}
