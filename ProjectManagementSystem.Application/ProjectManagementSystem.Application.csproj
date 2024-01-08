@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="Contracts\Features\Task\Commands\" />
     <Folder Include="Contracts\Features\User\Commands\" />
-    <Folder Include="Contracts\Features\User\Queries\" />
   </ItemGroup>
 
 </Project>
