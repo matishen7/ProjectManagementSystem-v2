@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProjectManagementSystem.Core.Entities
 {
-    public class Project
+    public class Project : BaseEntity
     {
         public int ProjectId { get; set; }
 

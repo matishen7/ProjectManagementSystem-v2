@@ -2,7 +2,7 @@
 
 namespace ProjectManagementSystem.Core.Entities
 {
-    public class ProjectTask
+    public class ProjectTask : BaseEntity
     {
         public int TaskId { get; set; }
 
