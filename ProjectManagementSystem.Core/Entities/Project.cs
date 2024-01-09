@@ -16,7 +16,7 @@ namespace ProjectManagementSystem.Core.Entities
         public DateTime? EndDate { get; set; }
 
         // Navigation properties
-        public ICollection<Task> Tasks { get; set; }
+        public ICollection<ProjectTask> Tasks { get; set; }
 
         // Navigation property for the project manager (assuming a many-to-one relationship)
         public User ProjectManager { get; set; }
