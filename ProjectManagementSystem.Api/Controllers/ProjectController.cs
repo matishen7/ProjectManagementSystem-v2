@@ -2,8 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagementSystem.Application.Contracts.Features.Project.Queries;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace ProjectManagementSystem.Api.Controllers
 {
     [Route("api/[controller]")]
