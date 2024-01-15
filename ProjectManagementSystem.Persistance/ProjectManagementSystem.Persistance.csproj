@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ProjectManagementSystem.Application\ProjectManagementSystem.Application.csproj" />
     <ProjectReference Include="..\ProjectManagementSystem.Core\ProjectManagementSystem.Core.csproj" />
   </ItemGroup>
 
