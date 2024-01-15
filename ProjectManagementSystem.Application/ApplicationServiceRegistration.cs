@@ -13,8 +13,8 @@ namespace ProjectManagementSystem.Application
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            services.AddAutoMapper(typeof(ApplicationServiceRegistration));
+            services.AddMediatR(typeof(ApplicationServiceRegistration));
             return services;
         }
     }
