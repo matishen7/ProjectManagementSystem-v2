@@ -14,7 +14,7 @@ namespace ProjectManagementSystem.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(ApplicationServiceRegistration));
-            services.AddMediatR(typeof(ApplicationServiceRegistration));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
             return services;
         }
     }
