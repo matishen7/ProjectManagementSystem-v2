@@ -15,7 +15,7 @@ namespace ProjectManagementSystem.Application.MappingProfiles
         public UserMappingProfile()
         {
             CreateMap<UserDto, User>().ReverseMap();
-            CreateMap<UpdateUserCommand, User>();
+            CreateMap<UpdateUserCommand, User>().ReverseMap();
         }
     }
 }

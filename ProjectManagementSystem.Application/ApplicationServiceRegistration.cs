@@ -1,5 +1,7 @@
-﻿using MediatR;
+﻿using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectManagementSystem.Application.Contracts.Features.User.Commands;
 using ProjectManagementSystem.Application.Contracts.Persistence;
 using System;
 using System.Collections.Generic;
@@ -16,7 +18,6 @@ namespace ProjectManagementSystem.Application
         {
             services.AddAutoMapper(typeof(ApplicationServiceRegistration));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
-
             return services;
         }
     }
