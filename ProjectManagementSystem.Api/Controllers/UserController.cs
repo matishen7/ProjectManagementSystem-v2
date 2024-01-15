@@ -24,16 +24,10 @@ namespace ProjectManagementSystem.Api.Controllers
             return Ok(user);
         }
 
-        [HttpPut("{userId}")]
-        public async Task<IActionResult> UpdateUser(int userId, [FromBody] UpdateUserCommand command)
+        [HttpPut]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
         {
-            if (userId != command.UserId)
-            {
-                return BadRequest("Mismatched user ID in the route and body.");
-            }
-
             await _mediator.Send(command);
-
             return NoContent();
         }
 
