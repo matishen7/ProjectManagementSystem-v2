@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using ProjectManagementSystem.Application.Contracts.Persistence;
+using ProjectManagementSystem.Application.Middleware;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,10 @@ namespace ProjectManagementSystem.Application.Contracts.Features.User.Queries
         public async Task<UserDto> Handle(GetUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _userRepository.GetByIdAsync(request.UserId);
+            if (user == null)
+            {
+                throw new NotFoundException(nameof(User), request.UserId);
+            }
             return _mapper.Map<UserDto>(user);
         }
     }

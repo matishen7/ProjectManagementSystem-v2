@@ -5,8 +5,6 @@ namespace ProjectManagementSystem.Core.Entities
 {
     public class User : BaseEntity
     {
-        public int UserId { get; set; }
-
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -14,6 +12,6 @@ namespace ProjectManagementSystem.Core.Entities
         public string Email { get; set; }
 
         // Navigation property for projects assigned to the user
-        public ICollection<Project> AssignedProjects { get; set; }
+        public ICollection<Project>? AssignedProjects { get; set; }
     }
 }

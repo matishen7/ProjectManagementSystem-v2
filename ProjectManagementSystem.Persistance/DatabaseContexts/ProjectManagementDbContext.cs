@@ -23,7 +23,6 @@ namespace ProjectManagementSystem.Persistance.DatabaseContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProjectManagementDbContext).Assembly);
-
             base.OnModelCreating(modelBuilder);
         }
 

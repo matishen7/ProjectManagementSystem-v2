@@ -5,8 +5,6 @@ namespace ProjectManagementSystem.Core.Entities
 {
     public class Project : BaseEntity
     {
-        public int ProjectId { get; set; }
-
         public string Title { get; set; }
 
         public string Description { get; set; }
@@ -16,12 +14,9 @@ namespace ProjectManagementSystem.Core.Entities
         public DateTime? EndDate { get; set; }
 
         // Navigation properties
-        public ICollection<ProjectTask> Tasks { get; set; }
-
-        // Navigation property for the project manager (assuming a many-to-one relationship)
-        public User ProjectManager { get; set; }
+        public ICollection<ProjectTask>? ProjectTasks { get; set; }
 
         // Navigation property for team members (assuming a many-to-many relationship)
-        public ICollection<User> TeamMembers { get; set; }
+        public ICollection<User>? TeamMembers { get; set; }
     }
 }
