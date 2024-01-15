@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectManagementSystem.Application.Contracts.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace ProjectManagementSystem.Application
         {
             services.AddAutoMapper(typeof(ApplicationServiceRegistration));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            services.AddTransient<IUserRepository, UserRepository>();
+
             return services;
         }
     }
