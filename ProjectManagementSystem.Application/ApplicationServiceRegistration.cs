@@ -16,7 +16,6 @@ namespace ProjectManagementSystem.Application
         {
             services.AddAutoMapper(typeof(ApplicationServiceRegistration));
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
-            services.AddTransient<IUserRepository, UserRepository>();
 
             return services;
         }
