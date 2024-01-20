@@ -62,6 +62,23 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            try
+            {
+                // Send the GetAllUsersQuery to the mediator
+                var users = await _mediator.Send(new GetAllUsersQuery());
+
+                return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                // Handle other exceptions
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
     }
 
 
