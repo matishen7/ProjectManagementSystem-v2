@@ -1,43 +1,35 @@
 ﻿using AutoMapper;
 using MediatR;
-using ProjectManagementSystem.Application.Contracts.Features.Project.Commands;
 using ProjectManagementSystem.Application.Contracts.Persistence;
 using ProjectManagementSystem.Application.Middleware;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.User.Commands
 {
-    public class CreateProjectCommandHandler : IRequestHandler<CreateProjectCommand, int>
+    public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, Unit>
     {
-        private readonly IProjectRepository _projectRepository;
-        private readonly IMapper _mapper;
         private readonly IUserRepository _userRepository;
+        private readonly IMapper _mapper;
 
-        public CreateProjectCommandHandler(
-            IProjectRepository projectRepository,
-            IMapper mapper,
-            IUserRepository userRepository)
+        public CreateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
-            _projectRepository = projectRepository;
-            _mapper = mapper;
             _userRepository = userRepository;
+            _mapper = mapper;
         }
 
-        public async Task<int> Handle(CreateProjectCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
-            var validator = new CreateProjectCommandValidator(_userRepository);
-
-            var validationResult = await validator.ValidateAsync(request, cancellationToken);
+            var validationResult = await new CreateUserCommandValidator().ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
             {
                 throw new ValidationException(validationResult.Errors);
             }
 
-            var projectEntity = _mapper.Map<Core.Entities.Project>(request);
+            var user = _mapper.Map<Core.Entities.User>(request);
 
-            await _projectRepository.CreateAsync(projectEntity);
+            await _userRepository.CreateAsync(user);
 
-            return projectEntity.Id;
+            return Unit.Value;
         }
     }
 }
