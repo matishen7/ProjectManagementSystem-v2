@@ -21,8 +21,19 @@ namespace ProjectManagementSystem.Api.Controllers
         [HttpGet("{userId}")]
         public async Task<IActionResult> GetUser(int userId)
         {
-            var user = await _mediator.Send(new GetUserQuery { UserId = userId });
-            return Ok(user);
+            try
+            {
+                var user = await _mediator.Send(new GetUserQuery { UserId = userId });
+                return Ok(user);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
         }
 
         [HttpPut]
@@ -62,19 +73,17 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
-        [HttpGet]
+        [HttpGet()]
         public async Task<IActionResult> GetAllUsers()
         {
             try
             {
-                // Send the GetAllUsersQuery to the mediator
                 var users = await _mediator.Send(new GetAllUsersQuery());
 
                 return Ok(users);
             }
             catch (Exception ex)
             {
-                // Handle other exceptions
                 return StatusCode(500, "An error occurred while processing the request");
             }
         }
