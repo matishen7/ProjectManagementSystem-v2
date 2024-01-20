@@ -25,7 +25,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.User.Commands
                 throw new ValidationException(validationResult.Errors);
             }
 
-            var user = _mapper.Map<Core.Entities.User>(request);
+            var user = _mapper.Map<Core.Entities.UserEntity>(request);
 
             await _userRepository.CreateAsync(user);
 

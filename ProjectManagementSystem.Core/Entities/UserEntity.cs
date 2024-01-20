@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ProjectManagementSystem.Core.Entities
 {
-    public class User : BaseEntity
+    public class UserEntity : BaseEntity
     {
         public string FirstName { get; set; }
 
@@ -11,7 +11,5 @@ namespace ProjectManagementSystem.Core.Entities
 
         public string Email { get; set; }
 
-        // Navigation property for projects assigned to the user
-        public ICollection<Project>? AssignedProjects { get; set; }
     }
 }

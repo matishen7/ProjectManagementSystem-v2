@@ -10,10 +10,8 @@ namespace ProjectManagementSystem.Core.Entities
 
         public DateTime Deadline { get; set; }
 
-        // Navigation property for the project the task belongs to (assuming a many-to-one relationship)
         public Project? Project { get; set; }
 
-        // Navigation property for the assigned user (assuming a many-to-one relationship)
-        public User? AssignedUser { get; set; }
+        public UserEntity? AssignedUser { get; set; }
     }
 }

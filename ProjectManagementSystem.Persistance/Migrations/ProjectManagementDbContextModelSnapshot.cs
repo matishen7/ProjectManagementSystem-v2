@@ -43,6 +43,9 @@ namespace ProjectManagementSystem.Persistance.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("ProjectManagerId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("datetime2");
 
@@ -51,6 +54,8 @@ namespace ProjectManagementSystem.Persistance.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProjectManagerId");
 
                     b.ToTable("Projects");
                 });
@@ -95,7 +100,7 @@ namespace ProjectManagementSystem.Persistance.Migrations
                     b.ToTable("ProjectTasks");
                 });
 
-            modelBuilder.Entity("ProjectManagementSystem.Core.Entities.User", b =>
+            modelBuilder.Entity("ProjectManagementSystem.Core.Entities.UserEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -126,24 +131,20 @@ namespace ProjectManagementSystem.Persistance.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("ProjectUser", b =>
+            modelBuilder.Entity("ProjectManagementSystem.Core.Entities.Project", b =>
                 {
-                    b.Property<int>("AssignedProjectsId")
-                        .HasColumnType("int");
+                    b.HasOne("ProjectManagementSystem.Core.Entities.UserEntity", "ProjectManager")
+                        .WithMany()
+                        .HasForeignKey("ProjectManagerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Property<int>("TeamMembersId")
-                        .HasColumnType("int");
-
-                    b.HasKey("AssignedProjectsId", "TeamMembersId");
-
-                    b.HasIndex("TeamMembersId");
-
-                    b.ToTable("ProjectUser");
+                    b.Navigation("ProjectManager");
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Core.Entities.ProjectTask", b =>
                 {
-                    b.HasOne("ProjectManagementSystem.Core.Entities.User", "AssignedUser")
+                    b.HasOne("ProjectManagementSystem.Core.Entities.UserEntity", "AssignedUser")
                         .WithMany()
                         .HasForeignKey("AssignedUserId");
 
@@ -154,21 +155,6 @@ namespace ProjectManagementSystem.Persistance.Migrations
                     b.Navigation("AssignedUser");
 
                     b.Navigation("Project");
-                });
-
-            modelBuilder.Entity("ProjectUser", b =>
-                {
-                    b.HasOne("ProjectManagementSystem.Core.Entities.Project", null)
-                        .WithMany()
-                        .HasForeignKey("AssignedProjectsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("ProjectManagementSystem.Core.Entities.User", null)
-                        .WithMany()
-                        .HasForeignKey("TeamMembersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("ProjectManagementSystem.Core.Entities.Project", b =>

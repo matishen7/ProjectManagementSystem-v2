@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Persistance.Repositories
 {
-    public class UserRepository : GenericRepository<User>, IUserRepository
+    public class UserRepository : GenericRepository<UserEntity>, IUserRepository
     {
         public UserRepository(ProjectManagementDbContext context) : base(context)
         {

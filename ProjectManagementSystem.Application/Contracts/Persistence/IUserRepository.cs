@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Persistence
 {
-    public interface IUserRepository : IGenericRepository<User>
+    public interface IUserRepository : IGenericRepository<UserEntity>
     {
     }
 }

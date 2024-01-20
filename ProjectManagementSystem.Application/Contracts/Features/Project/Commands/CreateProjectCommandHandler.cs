@@ -37,11 +37,22 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
                 throw new ValidationException(validationResult.Errors);
             }
 
-            var projectEntity = _mapper.Map<Core.Entities.Project>(request);
+            try
+            {
+                var manager = await _userRepository.GetByIdAsync(request.ProjectManagerId);
+                var projectEntity = _mapper.Map<Core.Entities.Project>(request);
+                projectEntity.ProjectManager = manager;
 
-            await _projectRepository.CreateAsync(projectEntity);
+                await _projectRepository.CreateProjectAsync(projectEntity);
 
-            return projectEntity.Id;
+                return projectEntity.Id;
+            }
+
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return -1;
+            }
         }
     }
 

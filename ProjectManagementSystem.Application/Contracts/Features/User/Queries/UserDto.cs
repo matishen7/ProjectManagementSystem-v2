@@ -14,11 +14,5 @@ namespace ProjectManagementSystem.Application.Contracts.Features.User.Queries
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
-        
-        // Collection of projects assigned to the user
-        public ICollection<ProjectDto> AssignedProjects { get; set; }
-
-        // Collection of tasks assigned to the user
-        public ICollection<ProjectTaskDto> AssignedTasks { get; set; }
     }
 }
