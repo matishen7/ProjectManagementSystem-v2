@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ProjectManagementSystem.Application.Contracts.Features.Project.Queries;
 using ProjectManagementSystem.Application.Contracts.Features.User.Commands;
 using ProjectManagementSystem.Application.Contracts.Features.User.Queries;
+using ProjectManagementSystem.Application.Middleware;
 
 namespace ProjectManagementSystem.Api.Controllers
 {
@@ -27,8 +28,38 @@ namespace ProjectManagementSystem.Api.Controllers
         [HttpPut]
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
         {
-            await _mediator.Send(command);
-            return NoContent();
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateUser([FromBody] CreateUserCommand createUserCommand)
+        {
+            try
+            {
+                await _mediator.Send(createUserCommand);
+
+                return Ok("User created successfully");
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
         }
 
     }
