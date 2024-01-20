@@ -17,7 +17,9 @@ namespace ProjectManagementSystem.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(typeof(ApplicationServiceRegistration));
-            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly())); 
+            services.AddTransient<IValidator<UpdateUserCommand>, UpdateUserCommandValidator>();
+
             return services;
         }
     }

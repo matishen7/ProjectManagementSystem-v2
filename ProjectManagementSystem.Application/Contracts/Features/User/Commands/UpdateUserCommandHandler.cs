@@ -9,19 +9,17 @@ namespace ProjectManagementSystem.Application.Contracts.Features.User.Commands
     {
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        private readonly UpdateUserCommandValidator _validator;
 
-        public UpdateUserCommandHandler(IUserRepository userRepository, IMapper mapper, UpdateUserCommandValidator validator)
+        public UpdateUserCommandHandler(IUserRepository userRepository, IMapper mapper)
         {
             _userRepository = userRepository;
             _mapper = mapper;
-            _validator = validator;
         }
 
         public async Task<Unit> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
         {
             // Validate the command
-            var validationResult = await _validator.ValidateAsync(request, cancellationToken);
+            var validationResult = await new UpdateUserCommandValidator().ValidateAsync(request, cancellationToken);
 
             if (!validationResult.IsValid)
             {

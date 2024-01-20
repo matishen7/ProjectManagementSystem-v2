@@ -1,6 +1,8 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FluentValidation;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ProjectManagementSystem.Application.Contracts.Features.User.Commands;
 using ProjectManagementSystem.Application.Contracts.Persistence;
 using ProjectManagementSystem.Persistance.DatabaseContexts;
 using ProjectManagementSystem.Persistance.Repositories;
@@ -25,6 +27,7 @@ namespace ProjectManagementSystem.Persistance
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IProjectRepository, ProjectRepository>();
             services.AddScoped<IProjectTaskRepository, ProjectTaskRepository>();
+
 
             return services;
         }
