@@ -30,6 +30,12 @@ namespace ProjectManagementSystem.Api.Controllers
             {
                 return BadRequest(new { Errors = ex.Errors });
             }
+
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
             catch (Exception ex)
             {
                 return StatusCode(500, "An error occurred while processing the request");
@@ -48,6 +54,12 @@ namespace ProjectManagementSystem.Api.Controllers
             {
                 return BadRequest(new { Errors = ex.Errors });
             }
+
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+
             catch (Exception ex)
             {
                 return StatusCode(500, "An error occurred while processing the request");
@@ -81,6 +93,25 @@ namespace ProjectManagementSystem.Api.Controllers
                 var users = await _mediator.Send(new GetAllUsersQuery());
 
                 return Ok(users);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
+        [HttpDelete("{userId}")]
+        public async Task<IActionResult> DeleteUser(int userId)
+        {
+            try
+            {
+                await _mediator.Send(new DeleteUserCommand { UserId = userId });
+
+                return Ok($"User with ID {userId} deleted successfully");
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception ex)
             {
