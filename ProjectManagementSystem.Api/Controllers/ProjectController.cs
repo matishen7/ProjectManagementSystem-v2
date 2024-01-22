@@ -20,8 +20,24 @@ namespace ProjectManagementSystem.Api.Controllers
         [HttpGet("{projectId}")]
         public async Task<IActionResult> GetProject(int projectId)
         {
-            var project = await _mediator.Send(new GetProjectQuery { ProjectId = projectId });
-            return Ok(project);
+            try
+            {
+                var project = await _mediator.Send(new GetProjectQuery { ProjectId = projectId });
+
+                return Ok(project);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
         }
 
         [HttpPost("Create")]
