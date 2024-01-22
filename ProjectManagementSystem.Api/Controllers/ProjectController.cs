@@ -17,6 +17,14 @@ namespace ProjectManagementSystem.Api.Controllers
             _mediator = mediator;
         }
 
+        [HttpGet]
+        public async Task<ActionResult<List<ProjectDto>>> GetAllProjects()
+        {
+            var query = new GetAllProjectsQuery();
+            var projectsDto = await _mediator.Send(query);
+            return Ok(projectsDto);
+        }
+
         [HttpGet("{projectId}")]
         public async Task<IActionResult> GetProject(int projectId)
         {

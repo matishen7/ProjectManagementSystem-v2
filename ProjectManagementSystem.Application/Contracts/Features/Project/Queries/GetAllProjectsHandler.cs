@@ -22,7 +22,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Queries
 
         public async Task<List<ProjectDto>> Handle(GetAllProjectsQuery request, CancellationToken cancellationToken)
         {
-            var projects = await _projectRepository.GetAllAsync();
+            var projects = await _projectRepository.GetAsync();
 
             return _mapper.Map<List<ProjectDto>>(projects);
         }
