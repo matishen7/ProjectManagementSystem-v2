@@ -15,11 +15,5 @@ namespace ProjectManagementSystem.Persistance.Repositories
         public ProjectRepository(ProjectManagementDbContext context) : base(context)
         {
         }
-
-        public async Task CreateProjectAsync(Project project)
-        {
-            await _context.Projects.AddAsync(project);
-            await _context.SaveChangesAsync();
-        }
     }
 }

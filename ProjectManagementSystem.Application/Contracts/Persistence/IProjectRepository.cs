@@ -10,6 +10,5 @@ namespace ProjectManagementSystem.Application.Contracts.Persistence
 {
     public interface IProjectRepository : IGenericRepository<Project>
     {
-        public Task CreateProjectAsync(Project project);
     }
 }

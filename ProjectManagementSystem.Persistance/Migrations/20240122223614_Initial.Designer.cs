@@ -12,8 +12,8 @@ using ProjectManagementSystem.Persistance.DatabaseContexts;
 namespace ProjectManagementSystem.Persistance.Migrations
 {
     [DbContext(typeof(ProjectManagementDbContext))]
-    [Migration("20240120231155_relations-user-project-task2")]
-    partial class relationsuserprojecttask2
+    [Migration("20240122223614_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
