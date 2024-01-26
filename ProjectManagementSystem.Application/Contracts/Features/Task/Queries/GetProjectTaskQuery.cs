@@ -9,6 +9,6 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
 {
     public class GetProjectTaskQuery : IRequest<ProjectTaskDto>
     {
-        public int TaskId { get; set; }
+        public int ProjectTaskId { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectManagementSystem.Application.Contracts.Features.Project.Commands;
 using ProjectManagementSystem.Application.Contracts.Features.Project.Queries;
+using ProjectManagementSystem.Application.Contracts.Features.Task.Queries;
 using ProjectManagementSystem.Application.Middleware;
 
 namespace ProjectManagementSystem.Api.Controllers
@@ -89,14 +90,14 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
-        [HttpDelete("{projectId}")]
-        public async Task<ActionResult> DeleteProject(int projectId)
+        [HttpGet("{projectTaskId}")]
+        public async Task<IActionResult> GetProjectTaskById(int projectTaskId)
         {
             try
             {
-                var command = new DeleteProjectCommand { ProjectId = projectId };
-                await _mediator.Send(command);
-                return NoContent();
+                var query = new GetProjectTaskQuery { ProjectTaskId = projectTaskId };
+                var projectTaskDto = await _mediator.Send(query);
+                return Ok(projectTaskDto);
             }
             catch (NotFoundException ex)
             {
@@ -110,7 +111,6 @@ namespace ProjectManagementSystem.Api.Controllers
             {
                 return StatusCode(500, "An error occurred while processing the request");
             }
-
         }
     }
 }

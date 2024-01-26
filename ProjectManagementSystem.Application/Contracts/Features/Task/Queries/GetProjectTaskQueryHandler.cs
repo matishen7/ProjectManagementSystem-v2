@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using ProjectManagementSystem.Application.Contracts.Persistence;
+using ProjectManagementSystem.Application.Middleware;
+using ProjectManagementSystem.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,12 +11,12 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
 {
-    public class GetProjectTaskQueryHandler : IRequestHandler<GetProjectTaskQuery, ProjectTaskDto>
+    public class GetProjectTaskHandler : IRequestHandler<GetProjectTaskQuery, ProjectTaskDto>
     {
         private readonly IProjectTaskRepository _projectTaskRepository;
         private readonly IMapper _mapper;
 
-        public GetProjectTaskQueryHandler(IProjectTaskRepository projectTaskRepository, IMapper mapper)
+        public GetProjectTaskHandler(IProjectTaskRepository projectTaskRepository, IMapper mapper)
         {
             _projectTaskRepository = projectTaskRepository;
             _mapper = mapper;
@@ -22,8 +24,25 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
 
         public async Task<ProjectTaskDto> Handle(GetProjectTaskQuery request, CancellationToken cancellationToken)
         {
-            var task = await _projectTaskRepository.GetByIdAsync(request.TaskId);
-            return _mapper.Map<ProjectTaskDto>(task);
+            var validator = new GetProjectTaskQueryValidator();
+            var validationResult = await validator.ValidateAsync(request);
+
+            if (!validationResult.IsValid)
+            {
+                throw new ValidationException(validationResult.Errors);
+            }
+
+            var projectTask = await _projectTaskRepository.GetByIdAsync(request.ProjectTaskId);
+
+            if (projectTask == null)
+            {
+                throw new NotFoundException(nameof(ProjectTask), request.ProjectTaskId);
+            }
+
+            var projectTaskDto = _mapper.Map<ProjectTaskDto>(projectTask);
+
+            return projectTaskDto;
         }
     }
+
 }
