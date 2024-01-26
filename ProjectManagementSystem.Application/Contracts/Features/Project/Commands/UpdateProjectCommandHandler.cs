@@ -13,20 +13,20 @@ using ValidationException = ProjectManagementSystem.Application.Middleware.Valid
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Project.Commands
 {
-    public class UpdateProjectHandler : IRequestHandler<UpdateProjectQuery, ProjectDto>
+    public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, ProjectDto>
     {
         private readonly IProjectRepository _projectRepository;
         private readonly IMapper _mapper;
 
-        public UpdateProjectHandler(IProjectRepository projectRepository, IMapper mapper)
+        public UpdateProjectCommandHandler(IProjectRepository projectRepository, IMapper mapper)
         {
             _projectRepository = projectRepository;
             _mapper = mapper;
         }
 
-        public async Task<ProjectDto> Handle(UpdateProjectQuery request, CancellationToken cancellationToken)
+        public async Task<ProjectDto> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdateProjectQueryValidator();
+            var validator = new UpdateProjectCommandValidator();
 
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 

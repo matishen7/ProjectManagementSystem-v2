@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Project.Commands
 {
-    public class UpdateProjectQueryValidator : AbstractValidator<UpdateProjectQuery>
+    public class UpdateProjectCommandValidator : AbstractValidator<UpdateProjectCommand>
     {
-        public UpdateProjectQueryValidator()
+        public UpdateProjectCommandValidator()
         {
             RuleFor(x => x.ProjectId).GreaterThan(0).WithMessage("ProjectId must be greater than 0.");
             RuleFor(x => x.Title).NotEmpty().WithMessage("Title is required.");

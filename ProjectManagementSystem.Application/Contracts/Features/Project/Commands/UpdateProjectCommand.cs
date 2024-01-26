@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Project.Commands
 {
-    public class UpdateProjectQuery : IRequest<ProjectDto>
+    public class UpdateProjectCommand : IRequest<ProjectDto>
     {
         public int ProjectId { get; set; }
         public string Title { get; set; }

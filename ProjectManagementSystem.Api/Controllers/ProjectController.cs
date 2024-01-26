@@ -68,7 +68,7 @@ namespace ProjectManagementSystem.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<ActionResult<ProjectDto>> UpdateProject(UpdateProjectQuery request)
+        public async Task<ActionResult<ProjectDto>> UpdateProject(UpdateProjectCommand request)
         {
             try
             {
