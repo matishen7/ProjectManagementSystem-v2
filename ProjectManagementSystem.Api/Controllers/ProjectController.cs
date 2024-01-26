@@ -66,5 +66,28 @@ namespace ProjectManagementSystem.Api.Controllers
                 return StatusCode(500, "An error occurred while processing the request");
             }
         }
+
+        [HttpPut]
+        public async Task<ActionResult<ProjectDto>> UpdateProject(UpdateProjectQuery request)
+        {
+            try
+            {
+                var projectDto = await _mediator.Send(request);
+                return Ok(projectDto);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
     }
 }
