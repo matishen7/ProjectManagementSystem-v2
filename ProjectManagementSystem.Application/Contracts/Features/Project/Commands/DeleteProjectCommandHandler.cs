@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Project.Commands
 {
-    public class DeleteProjectHandler : IRequestHandler<DeleteProjectCommand, bool>
+    public class DeleteProjectHandler : IRequestHandler<DeleteProjectCommand, Unit>
     {
         private readonly IProjectRepository _projectRepository;
 
@@ -18,7 +18,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
             _projectRepository = projectRepository;
         }
 
-        public async Task<bool> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
             var validator = new DeleteProjectCommandValidator();
             var validationResult = await validator.ValidateAsync(request);
@@ -37,7 +37,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
 
             await _projectRepository.DeleteAsync(existingProject);
 
-            return true;
+            return Unit.Value;
         }
     }
 

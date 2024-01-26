@@ -89,5 +89,28 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
+        [HttpDelete("{projectId}")]
+        public async Task<ActionResult> DeleteProject(int projectId)
+        {
+            try
+            {
+                var command = new DeleteProjectCommand { ProjectId = projectId };
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+
+        }
     }
 }
