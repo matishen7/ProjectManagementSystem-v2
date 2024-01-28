@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
 {
-    public class GetAllProjectTasksQueryValidator : AbstractValidator<GetAllProjectTasksQuery>
+    public class GetAllProjectTasksForProjectQueryValidator : AbstractValidator<GetAllProjectTasksForProjectQuery>
     {
-        public GetAllProjectTasksQueryValidator()
+        public GetAllProjectTasksForProjectQueryValidator()
         {
             RuleFor(x => x.ProjectId).GreaterThan(0).WithMessage("ProjectId must be greater than 0.");
         }

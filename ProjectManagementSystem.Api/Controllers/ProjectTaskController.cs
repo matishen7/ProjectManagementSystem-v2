@@ -42,17 +42,46 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
-        [HttpGet("project/{projectId}/tasks")]
+        [HttpGet("{projectId}")]
         public async Task<IActionResult> GetProjectTasksForProject(int projectId)
         {
             try
             {
-                var query = new GetAllProjectTasksQuery { ProjectId = projectId };
+                var query = new GetAllProjectTasksForProjectQuery { ProjectId = projectId };
                 var projectTaskDtos = await _mediator.Send(query);
 
                 if (projectTaskDtos == null || !projectTaskDtos.Any())
                 {
                     return NotFound($"No project tasks found for project with ID {projectId}.");
+                }
+
+                return Ok(projectTaskDtos);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
+        [HttpGet("{userId}")]
+        public async Task<IActionResult> GetProjectTasksForAssignedUser(int userId)
+        {
+            try
+            {
+                var query = new GetAllProjectTasksForUserQuery { UserId = userId };
+                var projectTaskDtos = await _mediator.Send(query);
+
+                if (projectTaskDtos == null || !projectTaskDtos.Any())
+                {
+                    return NotFound($"No project tasks found for user with ID {userId}.");
                 }
 
                 return Ok(projectTaskDtos);

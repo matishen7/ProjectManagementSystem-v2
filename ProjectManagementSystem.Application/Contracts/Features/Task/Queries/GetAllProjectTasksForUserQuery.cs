@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
 {
-    public class GetAllProjectTasksQuery : IRequest<List<ProjectTaskDto>>
+    public class GetAllProjectTasksForUserQuery : IRequest<List<ProjectTaskDto>>
     {
-        public int ProjectId { get; set; }
+        public int UserId { get; set; }
     }
 
 }
