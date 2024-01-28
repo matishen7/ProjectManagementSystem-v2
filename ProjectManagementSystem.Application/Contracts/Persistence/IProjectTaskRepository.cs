@@ -1,4 +1,5 @@
-﻿using ProjectManagementSystem.Core.Entities;
+﻿using ProjectManagementSystem.Application.Contracts.Features.Task.Queries;
+using ProjectManagementSystem.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,5 +10,6 @@ namespace ProjectManagementSystem.Application.Contracts.Persistence
 {
     public interface IProjectTaskRepository : IGenericRepository<ProjectTask>
     {
+        public Task<List<ProjectTask>> GetTasksForProjectAsync(int projectId);
     }
 }

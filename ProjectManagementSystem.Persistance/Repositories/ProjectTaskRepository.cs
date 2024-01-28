@@ -1,4 +1,6 @@
-﻿using ProjectManagementSystem.Application.Contracts.Persistence;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectManagementSystem.Application.Contracts.Features.Task.Queries;
+using ProjectManagementSystem.Application.Contracts.Persistence;
 using ProjectManagementSystem.Core.Entities;
 using ProjectManagementSystem.Persistance.DatabaseContexts;
 using System;
@@ -13,6 +15,14 @@ namespace ProjectManagementSystem.Persistance.Repositories
     {
         public ProjectTaskRepository(ProjectManagementDbContext context) : base(context)
         {
+        }
+
+        public Task<List<ProjectTask>> GetTasksForProjectAsync(int projectId)
+        {
+            return _context.ProjectTasks
+               .Where(q => q.ProjectId == projectId)
+               .Include(q => q.Project)
+               .ToListAsync();
         }
     }
 }
