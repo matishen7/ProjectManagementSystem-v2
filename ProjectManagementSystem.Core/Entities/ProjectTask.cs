@@ -12,6 +12,7 @@ namespace ProjectManagementSystem.Core.Entities
         public int ProjectId { get; set; }
 
         public Project? Project { get; set; }
+        public int UserId { get; set; }
 
         public UserEntity? AssignedUser { get; set; }
     }
