@@ -42,7 +42,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
-        [HttpGet("{projectId}")]
+        [HttpGet("project/{projectId}/tasks")]
         public async Task<IActionResult> GetProjectTasksForProject(int projectId)
         {
             try
@@ -71,7 +71,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
-        [HttpGet("{userId}")]
+        [HttpGet("user/{userId}/tasks")]
         public async Task<IActionResult> GetProjectTasksForAssignedUser(int userId)
         {
             try
@@ -100,6 +100,34 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
+        [HttpGet("tasks")]
+        public async Task<IActionResult> GetProjectTasks(int userId, int projectId)
+        {
+            try
+            {
+                var query = new GetAllProjectTasksForProjectAndUserQuery { UserId = userId , ProjectId = projectId};
+                var projectTaskDtos = await _mediator.Send(query);
+
+                if (projectTaskDtos == null || !projectTaskDtos.Any())
+                {
+                    return NotFound($"No project tasks found for user with ID {userId} and project with ID {projectId}");
+                }
+
+                return Ok(projectTaskDtos);
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
 
     }
 }

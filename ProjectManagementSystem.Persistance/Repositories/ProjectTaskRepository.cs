@@ -20,8 +20,7 @@ namespace ProjectManagementSystem.Persistance.Repositories
         public Task<List<ProjectTask>> GetTasksForAssignedUserAndProjectAsync(int userId, int projectId)
         {
             return _context.ProjectTasks
-                .Where(q => q.UserId == userId)
-                .Where(q => q.ProjectId == projectId)
+                .Where(q => q.UserId == userId && q.ProjectId == projectId)
                 .Include(q => q.AssignedUser)
                 .Include(q => q.Project)
                 .ToListAsync();
