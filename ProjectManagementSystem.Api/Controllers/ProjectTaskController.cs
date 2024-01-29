@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using ProjectManagementSystem.Application.Contracts.Features.Task.Commands;
 using ProjectManagementSystem.Application.Contracts.Features.Task.Queries;
 using ProjectManagementSystem.Application.Middleware;
 
@@ -128,6 +129,25 @@ namespace ProjectManagementSystem.Api.Controllers
                 return StatusCode(500, "An error occurred while processing the request");
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateProjectTask(CreateProjectTaskCommand command)
+        {
+            try
+            {
+                var taskId = await _mediator.Send(command);
+                return Ok($"Project task is created successfully with ID {taskId}.");
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
 
     }
 }
