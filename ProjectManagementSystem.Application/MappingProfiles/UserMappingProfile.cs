@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ProjectManagementSystem.Application.Contracts.Features.Project.Commands;
 using ProjectManagementSystem.Application.Contracts.Features.Project.Queries;
+using ProjectManagementSystem.Application.Contracts.Features.Task.Commands;
 using ProjectManagementSystem.Application.Contracts.Features.Task.Queries;
 using ProjectManagementSystem.Application.Contracts.Features.User.Commands;
 using ProjectManagementSystem.Application.Contracts.Features.User.Queries;
@@ -23,6 +24,7 @@ namespace ProjectManagementSystem.Application.MappingProfiles
             CreateMap<CreateUserCommand, UserEntity>().ReverseMap();
             CreateMap<ProjectDto, Project>().ReverseMap();
             CreateMap<CreateProjectCommand, Project>().ReverseMap();
+            CreateMap<CreateProjectTaskCommand, ProjectTask>().ReverseMap();
 
             CreateMap<ProjectTaskDto, ProjectTask>().ReverseMap();
         }

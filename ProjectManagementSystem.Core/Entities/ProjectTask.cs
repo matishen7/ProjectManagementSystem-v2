@@ -11,9 +11,6 @@ namespace ProjectManagementSystem.Core.Entities
         public DateTime? Deadline { get; set; }
         public int ProjectId { get; set; }
 
-        public Project Project { get; set; } = new Project();
         public int? UserId { get; set; }
-
-        public UserEntity? AssignedUser { get; set; }
     }
 }

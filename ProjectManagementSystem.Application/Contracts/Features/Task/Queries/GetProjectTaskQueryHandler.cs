@@ -32,7 +32,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
                 throw new ValidationException(validationResult.Errors);
             }
 
-            var projectTask = await _projectTaskRepository.GetByIdAsync(request.ProjectTaskId);
+            var projectTask = await _projectTaskRepository.GetProjectTaskByIdAsync(request.ProjectTaskId);
 
             if (projectTask == null)
             {

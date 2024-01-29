@@ -17,12 +17,17 @@ namespace ProjectManagementSystem.Persistance.Repositories
         {
         }
 
+        public Task<ProjectTask> GetProjectTaskByIdAsync(int Id)
+        {
+            return _context.ProjectTasks
+                .FirstOrDefaultAsync(x=>x.Id == Id);
+
+        }
+
         public Task<List<ProjectTask>> GetTasksForAssignedUserAndProjectAsync(int userId, int projectId)
         {
             return _context.ProjectTasks
                 .Where(q => q.UserId == userId && q.ProjectId == projectId)
-                .Include(q => q.AssignedUser)
-                .Include(q => q.Project)
                 .ToListAsync();
         }
 
@@ -30,7 +35,6 @@ namespace ProjectManagementSystem.Persistance.Repositories
         {
             return _context.ProjectTasks
                 .Where(q => q.UserId == userId)
-                .Include(q => q.AssignedUser)
                 .ToListAsync();
         }
 
@@ -38,7 +42,6 @@ namespace ProjectManagementSystem.Persistance.Repositories
         {
             return _context.ProjectTasks
                .Where(q => q.ProjectId == projectId)
-               .Include(q => q.Project)
                .ToListAsync();
         }
     }
