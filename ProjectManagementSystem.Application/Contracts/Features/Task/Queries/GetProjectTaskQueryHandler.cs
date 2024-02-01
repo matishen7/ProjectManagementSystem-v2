@@ -53,17 +53,22 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
                 throw new NotFoundException(nameof(Project), projectTask.ProjectId);
             }
 
-            var user = await _userRepository.GetByIdAsync(projectTask.UserId.Value);
-
-            if (user == null)
-            {
-                throw new NotFoundException(nameof(UserEntity), projectTask.UserId.Value);
-            }
+            
 
             var projectTaskDto = _mapper.Map<ProjectTaskDto>(projectTask);
             projectTaskDto.ProjectName = project.Title;
-            projectTaskDto.AssignedUserName = string.Format("{0} {1}", user.FirstName, user.LastName);
 
+            UserEntity user = null;
+            if (projectTask.UserId != null)
+            {
+                user = await _userRepository.GetByIdAsync(projectTask.UserId.Value);
+
+                if (user == null)
+                {
+                    throw new NotFoundException(nameof(UserEntity), projectTask.UserId.Value);
+                }
+                projectTaskDto.AssignedUserName = string.Format("{0} {1}", user.FirstName, user.LastName);
+            }
             return projectTaskDto;
         }
     }
