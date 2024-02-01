@@ -18,7 +18,9 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
         private readonly IUserRepository _userRepository;
         private readonly IProjectRepository _projectRepository;
 
-        public GetAllProjectTasksForProjectAndUserQueryHandler(IProjectTaskRepository projectTaskRepository, IMapper mapper,
+        public GetAllProjectTasksForProjectAndUserQueryHandler(
+            IProjectTaskRepository projectTaskRepository,
+            IMapper mapper,
             IUserRepository userRepository,
             IProjectRepository projectRepository)
         {

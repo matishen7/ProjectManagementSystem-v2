@@ -148,6 +148,29 @@ namespace ProjectManagementSystem.Api.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<IActionResult> UpdateProjectTask(UpdateProjectTaskCommand command)
+        {
+            try
+            {
+                await _mediator.Send(command);
+                return NoContent();
+            }
+            catch (NotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (ValidationException ex)
+            {
+                return BadRequest(new { Errors = ex.Errors });
+            }
+            catch (Exception)
+            {
+                return StatusCode(500, "An error occurred while processing the request");
+            }
+        }
+
+
 
     }
 }
