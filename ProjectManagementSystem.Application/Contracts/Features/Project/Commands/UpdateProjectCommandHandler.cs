@@ -16,17 +16,19 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
     public class UpdateProjectCommandHandler : IRequestHandler<UpdateProjectCommand, ProjectDto>
     {
         private readonly IProjectRepository _projectRepository;
-        private readonly IMapper _mapper;
+        private readonly IMapper _mapper; 
+        private readonly IUserRepository _userRepository;
 
-        public UpdateProjectCommandHandler(IProjectRepository projectRepository, IMapper mapper)
+        public UpdateProjectCommandHandler(IProjectRepository projectRepository, IMapper mapper, IUserRepository userRepository)
         {
             _projectRepository = projectRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<ProjectDto> Handle(UpdateProjectCommand request, CancellationToken cancellationToken)
         {
-            var validator = new UpdateProjectCommandValidator();
+            var validator = new UpdateProjectCommandValidator(_userRepository, _projectRepository);
 
             var validationResult = await validator.ValidateAsync(request, cancellationToken);
 

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using ProjectManagementSystem.Application.Contracts.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +10,32 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
 {
     public class UpdateProjectCommandValidator : AbstractValidator<UpdateProjectCommand>
     {
-        public UpdateProjectCommandValidator()
+        private readonly IUserRepository _userRepository;
+        private readonly IProjectRepository _projectRepository;
+        public UpdateProjectCommandValidator(IUserRepository userRepository, IProjectRepository projectRepository)
         {
-            RuleFor(x => x.ProjectId).GreaterThan(0).WithMessage("ProjectId must be greater than 0.");
-            RuleFor(x => x.Title).NotEmpty().WithMessage("Title is required.");
+            _userRepository = userRepository;
+            _projectRepository = projectRepository;
+
+            RuleFor(x => x.ProjectId).NotEmpty().NotNull().MustAsync(ProjectExists).WithMessage("Invalid project id specified."); ;
+            RuleFor(x => x.Title).NotEmpty().MaximumLength(100);
+            RuleFor(x => x.Description).NotEmpty();
+            RuleFor(x => x.StartDate).NotEmpty().GreaterThanOrEqualTo(DateTime.Now);
+            RuleFor(x => x.EndDate).GreaterThanOrEqualTo(x => x.StartDate).When(x => x.EndDate.HasValue);
+            RuleFor(x => x.ProjectManagerId).NotEmpty().GreaterThan(0).MustAsync(ProjectManagerExists).WithMessage("Invalid project manager id specified.");
+        }
+        private async Task<bool> ProjectManagerExists(int projectManagerId, CancellationToken cancellationToken)
+        {
+            var user = await _userRepository.GetByIdAsync(projectManagerId);
+
+            return user != null;
+        }
+
+        private async Task<bool> ProjectExists(int projectId, CancellationToken cancellationToken)
+        {
+            var project = await _projectRepository.GetByIdAsync(projectId);
+
+            return project != null;
         }
     }
 
