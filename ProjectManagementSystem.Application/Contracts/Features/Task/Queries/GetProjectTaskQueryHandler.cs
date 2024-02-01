@@ -13,13 +13,20 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
 {
     public class GetProjectTaskHandler : IRequestHandler<GetProjectTaskQuery, ProjectTaskDto>
     {
+        private readonly IProjectRepository _projectRepository;
+        private readonly IUserRepository _userRepository;
         private readonly IProjectTaskRepository _projectTaskRepository;
         private readonly IMapper _mapper;
 
-        public GetProjectTaskHandler(IProjectTaskRepository projectTaskRepository, IMapper mapper)
+        public GetProjectTaskHandler(IProjectTaskRepository projectTaskRepository, 
+            IMapper mapper, 
+            IProjectRepository projectRepository,
+            IUserRepository userRepository)
         {
             _projectTaskRepository = projectTaskRepository;
             _mapper = mapper;
+            _projectRepository = projectRepository;
+            _userRepository = userRepository;
         }
 
         public async Task<ProjectTaskDto> Handle(GetProjectTaskQuery request, CancellationToken cancellationToken)
@@ -39,7 +46,23 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
                 throw new NotFoundException(nameof(ProjectTask), request.ProjectTaskId);
             }
 
+            var project = await _projectRepository.GetByIdAsync(projectTask.ProjectId);
+
+            if (project == null)
+            {
+                throw new NotFoundException(nameof(Project), projectTask.ProjectId);
+            }
+
+            var user = await _userRepository.GetByIdAsync(projectTask.UserId.Value);
+
+            if (user == null)
+            {
+                throw new NotFoundException(nameof(UserEntity), projectTask.UserId.Value);
+            }
+
             var projectTaskDto = _mapper.Map<ProjectTaskDto>(projectTask);
+            projectTaskDto.ProjectName = project.Title;
+            projectTaskDto.AssignedUserName = string.Format("{0} {1}", user.FirstName, user.LastName);
 
             return projectTaskDto;
         }

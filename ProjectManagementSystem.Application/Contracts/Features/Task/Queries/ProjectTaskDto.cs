@@ -15,5 +15,10 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Queries
         public string Title { get; set; }
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
+        public int ProjectId { get; set; }
+
+        public int? UserId { get; set; }
+        public string? AssignedUserName { get; set; }
+        public string? ProjectName { get; set; }
     }
 }
