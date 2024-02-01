@@ -19,7 +19,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Commands
             RuleFor(x => x.Description).NotEmpty();
             RuleFor(x => x.Deadline).GreaterThan(DateTime.Now);
             RuleFor(x => x.ProjectId).GreaterThan(0).MustAsync(ProjectMustExist).WithMessage("{PropertyName} does not exist");
-            RuleFor(x => x.AssignedUserId).GreaterThan(0);
+            RuleFor(x => x.UserId).GreaterThan(0);
 
             _projectRepository = projectRepository;
         }

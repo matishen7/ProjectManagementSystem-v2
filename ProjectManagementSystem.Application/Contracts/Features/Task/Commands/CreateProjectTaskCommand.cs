@@ -13,7 +13,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Task.Commands
         public string Description { get; set; }
         public DateTime? Deadline { get; set; }
         public int ProjectId { get; set; }
-        public int? AssignedUserId { get; set; }
+        public int? UserId { get; set; }
     }
 
 }
