@@ -7,19 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F43BD650-F5A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{32C90AB2-7BBB-4DD7-95AA-3CED8A129BA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Core", "ProjectManagementSystem.Core\ProjectManagementSystem.Core.csproj", "{8F42AE10-1BAB-4470-83A1-270EF314EED2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Core", "ProjectManagementSystem.Core\ProjectManagementSystem.Core.csproj", "{8F42AE10-1BAB-4470-83A1-270EF314EED2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Application", "ProjectManagementSystem.Application\ProjectManagementSystem.Application.csproj", "{0BC9A09E-5FD8-42C1-87EE-E3B36487AFA0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Application", "ProjectManagementSystem.Application\ProjectManagementSystem.Application.csproj", "{0BC9A09E-5FD8-42C1-87EE-E3B36487AFA0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Infrastructure", "ProjectManagementSystem.Infrastructure\ProjectManagementSystem.Infrastructure.csproj", "{88F8AFC1-128D-4A1E-86D9-6619319896E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Infrastructure", "ProjectManagementSystem.Infrastructure\ProjectManagementSystem.Infrastructure.csproj", "{88F8AFC1-128D-4A1E-86D9-6619319896E5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Presentation", "ProjectManagementSystem.Presentation\ProjectManagementSystem.Presentation.csproj", "{78CDFEC2-2D61-4503-BAB9-66297C82941E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Presentation", "ProjectManagementSystem.Presentation\ProjectManagementSystem.Presentation.csproj", "{78CDFEC2-2D61-4503-BAB9-66297C82941E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{14427915-B7CD-4E08-87D7-6DF2A88D4975}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Api", "ProjectManagementSystem.Api\ProjectManagementSystem.Api.csproj", "{2A1BEB3C-2973-4572-B931-20C849F9C45A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Api", "ProjectManagementSystem.Api\ProjectManagementSystem.Api.csproj", "{2A1BEB3C-2973-4572-B931-20C849F9C45A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystem.Persistance", "ProjectManagementSystem.Persistance\ProjectManagementSystem.Persistance.csproj", "{7FACCDF5-07DA-4589-BA62-8BC5DA5577C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProjectManagementSystem.Persistance", "ProjectManagementSystem.Persistance\ProjectManagementSystem.Persistance.csproj", "{7FACCDF5-07DA-4589-BA62-8BC5DA5577C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectManagementSystemTests", "ProjectManagementSystemTests\ProjectManagementSystemTests.csproj", "{DFA56058-8859-4C79-BF21-69FD6FA0DBC2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{7FACCDF5-07DA-4589-BA62-8BC5DA5577C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FACCDF5-07DA-4589-BA62-8BC5DA5577C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FACCDF5-07DA-4589-BA62-8BC5DA5577C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DFA56058-8859-4C79-BF21-69FD6FA0DBC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFA56058-8859-4C79-BF21-69FD6FA0DBC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFA56058-8859-4C79-BF21-69FD6FA0DBC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFA56058-8859-4C79-BF21-69FD6FA0DBC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -63,6 +69,7 @@ Global
 		{14427915-B7CD-4E08-87D7-6DF2A88D4975} = {F43BD650-F5A4-4FEA-9601-E43BC6573E17}
 		{2A1BEB3C-2973-4572-B931-20C849F9C45A} = {14427915-B7CD-4E08-87D7-6DF2A88D4975}
 		{7FACCDF5-07DA-4589-BA62-8BC5DA5577C9} = {F43BD650-F5A4-4FEA-9601-E43BC6573E17}
+		{DFA56058-8859-4C79-BF21-69FD6FA0DBC2} = {32C90AB2-7BBB-4DD7-95AA-3CED8A129BA4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48321867-67DE-4215-8D73-20A059B65280}

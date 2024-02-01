@@ -164,9 +164,9 @@ namespace ProjectManagementSystem.Api.Controllers
             {
                 return BadRequest(new { Errors = ex.Errors });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request : {ex.Message}");
             }
         }
 
