@@ -13,7 +13,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.User.Commands
         {
             RuleFor(command => command.FirstName).NotEmpty().WithMessage("First name is required");
             RuleFor(command => command.LastName).NotEmpty().WithMessage("Last name is required");
-            RuleFor(command => command.Email).NotEmpty().EmailAddress().WithMessage("Invalid email address");
+            RuleFor(command => command.Email).NotEmpty();//.EmailAddress().WithMessage("Invalid email address");
         }
     }
 

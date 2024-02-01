@@ -46,6 +46,9 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
 
             existingProject.Title = request.Title;
             existingProject.Description = request.Description;
+            existingProject.StartDate = request.StartDate;
+            existingProject.EndDate = request.EndDate;
+            existingProject.ProjectManagerId = request.ProjectManagerId;
 
             await _projectRepository.UpdateAsync(existingProject);
 

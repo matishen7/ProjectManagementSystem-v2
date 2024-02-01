@@ -18,14 +18,18 @@ namespace ProjectManagementSystem.Application.MappingProfiles
     {
         public UserMappingProfile()
         {
+            //Users
             CreateMap<UserDto, UserEntity>().ReverseMap();
-            CreateMap<ProjectTaskDto, ProjectTask>().ReverseMap();
             CreateMap<UpdateUserCommand, UserEntity>().ReverseMap();
             CreateMap<CreateUserCommand, UserEntity>().ReverseMap();
+            //Projects
             CreateMap<ProjectDto, Project>().ReverseMap();
             CreateMap<CreateProjectCommand, Project>().ReverseMap();
-            CreateMap<CreateProjectTaskCommand, ProjectTask>().ReverseMap();
+            CreateMap<UpdateProjectCommand, Project>().ReverseMap();
 
+            //ProjectTasks
+            CreateMap<ProjectTaskDto, ProjectTask>().ReverseMap();
+            CreateMap<CreateProjectTaskCommand, ProjectTask>().ReverseMap();
             CreateMap<ProjectTaskDto, ProjectTask>().ReverseMap();
         }
     }
