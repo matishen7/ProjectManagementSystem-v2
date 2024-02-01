@@ -20,7 +20,7 @@ namespace ProjectManagementSystem.Application.Contracts.Features.Project.Command
 
         public async Task<Unit> Handle(DeleteProjectCommand request, CancellationToken cancellationToken)
         {
-            var validator = new DeleteProjectCommandValidator();
+            var validator = new DeleteProjectCommandValidator(_projectRepository);
             var validationResult = await validator.ValidateAsync(request);
 
             if (!validationResult.IsValid)

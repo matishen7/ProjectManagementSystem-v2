@@ -45,7 +45,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
@@ -64,7 +64,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
@@ -86,22 +86,18 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
-        [HttpGet("{projectTaskId}")]
-        public async Task<IActionResult> GetProjectTaskById(int projectTaskId)
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProject([FromBody] DeleteProjectCommand deleteProjectCommand)
         {
             try
             {
-                var query = new GetProjectTaskQuery { ProjectTaskId = projectTaskId };
-                var projectTaskDto = await _mediator.Send(query);
-                return Ok(projectTaskDto);
-            }
-            catch (NotFoundException ex)
-            {
-                return NotFound(ex.Message);
+                await _mediator.Send(deleteProjectCommand);
+
+                return Ok("Project successfully deleted.");
             }
             catch (ValidationException ex)
             {
@@ -109,7 +105,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
     }

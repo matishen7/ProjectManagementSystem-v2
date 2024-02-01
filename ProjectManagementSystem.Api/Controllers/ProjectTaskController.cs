@@ -39,7 +39,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
@@ -68,7 +68,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
@@ -97,7 +97,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
@@ -126,7 +126,7 @@ namespace ProjectManagementSystem.Api.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "An error occurred while processing the request");
+                return StatusCode(500, $"An error occurred while processing the request {ex.Message}");
             }
         }
 
